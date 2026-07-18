@@ -1,5 +1,6 @@
 # Compiled
 *.elc
+*.eln
 
 # Packaging
 .cask/
@@ -12,6 +13,23 @@ dist/
 
 # Backup files
 *~
+\#*\#
+.#*
 
 # Undo-tree save-files
 *.~undo-tree
+
+# Machine-local state and customization
+.cache/
+.local/
+auto-save-list/
+eln-cache/
+custom.el
+
+# Credentials
+.authinfo*
+authinfo*
+
+# OS metadata
+.DS_Store
+Thumbs.db
