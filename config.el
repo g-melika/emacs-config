@@ -57,6 +57,29 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 
+;; Doom's Odin module has build and test commands, but no run command.
+(defcustom +odin-run-command "odin run ."
+  "Command used to run the current Odin project."
+  :safe #'stringp
+  :type 'string
+  :group '+odin)
+
+(defun +odin/run ()
+  "Run the current Odin project from its root."
+  (interactive)
+  (let ((default-directory (or (doom-project-root) default-directory)))
+    (compile +odin-run-command)))
+
+(after! odin-mode
+  (map! :map odin-mode-map
+        :localleader
+        "r" #'+odin/run))
+
+(after! odin-ts-mode
+  (map! :map odin-ts-mode-map
+        :localleader
+        "r" #'+odin/run))
+
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `with-eval-after-load' block, otherwise Doom's defaults may override your
